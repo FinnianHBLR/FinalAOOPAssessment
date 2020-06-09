@@ -5,21 +5,22 @@ import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
 import me.finnlr.factory.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
+import me.finnlr.factory.assests.statics.Laser;
 
 import java.awt.*;
 
 public class Square extends MovingObject implements Collidable {
     //Properties
     //Defaults
-    private int w = 10;
-    private int h = 10;
+    private int w;
+    private int h;
 
     //Paint object
     public Color color;
 
     public void paintSquare(Graphics graphics) {
-    graphics.setColor(color);
-    graphics.fillRect(getX(), getY(), w, h);
+        graphics.setColor(color);
+        graphics.fillRect(getX(), getY(), w, h);
     }
 
     @Override
@@ -44,11 +45,19 @@ public class Square extends MovingObject implements Collidable {
             //the collisionEvent source is the other object
             Collidable eventSource = (Collidable) collisionEvent.getSource();
             //AS THIS IS NOT hitting a moving object, it must be outside the instance of movingObject!
-
             if(eventSource instanceof ConveyorBelt) {
+                //This code will get the speed of the ConveyorBelt and move that fast.
+
                 this.setXDirection(((ConveyorBelt) eventSource).getSpeed());
-                System.out.println(((ConveyorBelt) eventSource).getSpeed());
+                //System.out.println(((ConveyorBelt) eventSource).getSpeed());
                 this.setYDirection(0);
+
+            }
+
+            //Ineracting with laser!
+            if(eventSource instanceof Laser){
+                this.setColor(Color.BLUE);
+                ((Laser) eventSource).blinkLaser();
 
             }
 

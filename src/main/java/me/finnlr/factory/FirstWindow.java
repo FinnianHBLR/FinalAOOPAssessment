@@ -7,6 +7,7 @@ package me.finnlr.factory;/*
 import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
+import me.finnlr.factory.assests.statics.Laser;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,7 +40,7 @@ public class FirstWindow {
 
 		//Squares and balls imported from dynamic shapes package.
                 Ball blueBall=new Ball();
-                blueBall.setColor(Color.RED);
+                blueBall.setColor(Color.WHITE);
                 blueBall.setX(20);
                 blueBall.setY(100);
                 blueBall.setXDirection(0);
@@ -48,7 +49,7 @@ public class FirstWindow {
                 blueBall.setW(30);
 
                 Square blueSquare = new Square();
-                blueSquare.setColor(Color.BLUE);
+                blueSquare.setColor(Color.WHITE);
                 blueSquare.setX(750);
                 blueSquare.setY(100);
                 blueSquare.setXDirection(0);
@@ -67,15 +68,50 @@ public class FirstWindow {
                 conveyorBeltL.setDirection("R");
                 conveyorBeltL.setSpeed(1);
 
-            ConveyorBelt conveyorBeltR = new ConveyorBelt();
-            conveyorBeltR.setColor(Color.WHITE);
-            conveyorBeltR.setX(600);
-            conveyorBeltR.setY(200);
-            conveyorBeltR.setId(2);
-            conveyorBeltR.setW(200);
-            conveyorBeltR.setH(30);
-            conveyorBeltR.setDirection("L");
-            conveyorBeltR.setSpeed(1);
+                ConveyorBelt conveyorBeltR = new ConveyorBelt();
+                conveyorBeltR.setColor(Color.WHITE);
+                conveyorBeltR.setX(600);
+                conveyorBeltR.setY(200);
+                conveyorBeltR.setId(2);
+                conveyorBeltR.setW(200);
+                conveyorBeltR.setH(30);
+                conveyorBeltR.setDirection("L");
+                conveyorBeltR.setSpeed(1);
+
+                //Left Laser.
+                Laser laserL = new Laser();
+                //Laser Base.
+                laserL.setbX(400);
+                laserL.setbY(0);
+                laserL.setbW(20);
+                laserL.setbH(20);
+                laserL.setbColor(Color.BLACK);
+                //Laser.
+                laserL.setLaserH(610);
+                laserL.setLaserW(2);
+                laserL.setLaserX(400);
+                laserL.setLaserY(0);
+                //Angle of laser
+                laserL.setTheta(-48);
+                laserL.setLaserColor(Color.BLUE);
+
+                //Right Laser
+                Laser laserR = new Laser();
+                //Laser Base
+                laserR.setbX(380);
+                laserR.setbY(0);
+                laserR.setbW(20);
+                laserR.setbH(20);
+                laserR.setbColor(Color.BLACK);
+
+                laserR.setLaserH(610);
+                laserR.setLaserW(2);
+                laserR.setLaserX(400);
+                laserR.setLaserY(0);
+                //Angle of laser
+                laserR.setTheta(48);
+                laserR.setLaserColor(Color.RED);
+
 
 
                 //Adds objects to panel
@@ -83,6 +119,8 @@ public class FirstWindow {
                 panel.addSquare(blueSquare);
                 panel.addConveyorBelt(conveyorBeltL);
                 panel.addConveyorBelt(conveyorBeltR);
+                panel.addLaser(laserL);
+                panel.addLaser(laserR);
 
 
                 CollisionManager.height=600;
@@ -94,6 +132,9 @@ public class FirstWindow {
                 CollisionManager.addCollidable(conveyorBeltL);
                 CollisionManager.addCollidable(conveyorBeltR);
 
+                CollisionManager.addCollidable(laserL);
+                CollisionManager.addCollidable(laserR);
+
                 //A window has insets (borders and title bar). To give a size to the panel
                 //where we draw (so we can make sure we know the size) use setPreferedSize.
                 window.getContentPane().setPreferredSize(new Dimension(800, 600));
@@ -103,11 +144,11 @@ public class FirstWindow {
 		window.setVisible(true);
 
 		//Adds objects to thread.
-                MovingObjectAnimator mBall1=new MovingObjectAnimator(blueBall);
-                mBall1.setMovePerSec(25);
+                MovingObjectAnimator mBall1 = new MovingObjectAnimator(blueBall);
+                mBall1.setMovePerSec(30);
 
                 MovingObjectAnimator mSquare1 = new MovingObjectAnimator(blueSquare);
-                mSquare1.setMovePerSec(25);
+                mSquare1.setMovePerSec(30);
                 
                 Thread thread1=new Thread(mBall1);
                 thread1.start();

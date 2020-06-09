@@ -9,6 +9,7 @@ import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
 import me.finnlr.factory.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
+import me.finnlr.factory.assests.statics.Laser;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -55,8 +56,15 @@ public class Ball extends MovingObject implements Collidable {
             //THIS NEEDS COMMENTS!
                 
             this.setXDirection(((ConveyorBelt) eventSource).getSpeed());
-                System.out.println(((ConveyorBelt) eventSource).getSpeed());
+                //System.out.println(((ConveyorBelt) eventSource).getSpeed());
             this.setYDirection(0);
+
+            }
+            //Inerracting with laser!
+            if(eventSource instanceof Laser){
+                this.setColor(Color.RED);
+
+                ((Laser) eventSource).blinkLaser();
 
             }
 

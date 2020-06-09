@@ -7,8 +7,9 @@ package me.finnlr.factory;/*
 import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
+import me.finnlr.factory.assests.statics.Laser;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -25,6 +26,8 @@ public class CustomPanel extends JPanel
     private List<Square> squares = new ArrayList<>();
     //Array of belts.
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
+    //Array of Lasers
+    private List<Laser> lasers = new ArrayList<>();
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -42,7 +45,20 @@ public class CustomPanel extends JPanel
         for(ConveyorBelt conveyorBelt: conveyorBelts){
             conveyorBelt.paintConveyorBelt(g);
         }
+        for(Laser laser: lasers){
+            Graphics2D g2 = (Graphics2D) g;
+
+            //Casts  g as Graphics 2D to create a shape that can be rotated.
+            laser.paintLaser(g2);
+            //System.out.println("Creating Lasers..");
+
+            //Uses the pain laster base to paint the base.
+            laser.paintLaserBase(g);
+        }
     }
+
+
+
 
     public void addBall(Ball ball) {
        balls.add(ball);
@@ -57,5 +73,8 @@ public class CustomPanel extends JPanel
         conveyorBelts.add(conveyorBelt);
     }
 
+    public void addLaser(Laser laser){
+        lasers.add(laser);
+    }
 
 }

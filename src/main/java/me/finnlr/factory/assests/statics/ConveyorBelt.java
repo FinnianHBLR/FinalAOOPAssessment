@@ -2,6 +2,7 @@ package me.finnlr.factory.assests.statics;
 //Imports classes through
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
+import me.finnlr.factory.CollisionManager;
 import me.finnlr.factory.MovingObject;
 import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
@@ -13,7 +14,6 @@ public class ConveyorBelt implements Collidable {
     //Position
     private int x;
     private int y;
-
     //Size
     private int w;
     private int h;
@@ -28,23 +28,39 @@ public class ConveyorBelt implements Collidable {
     private String direction;
 
 
+    //Paint object
     public Color color;
 
     public void paintConveyorBelt(Graphics graphics) {
         graphics.setColor(color);
-        graphics.fillRect(this.x, this.y, w, h);
+        graphics.fillRect(getX(), getY(), w, h);
+
+        /* Display bounding Box.
+        graphics.setColor(new Color(1, 0, 0, 0.2f));
+        graphics.fillRect(getBounds().x,getBounds().y,getBounds().width,getBounds().height);
+        */
     }
 
 
     @Override
     public Rectangle getBounds() {
-        //Creates a rectangle using the specified x, y, w and h.
-        return new Rectangle(this.x, this.y, this.w, this.h);
+        //Creates bounding box around the rectangle.
+        return new Rectangle(getX(), getY(), w, h);
     }
+
+
 
     @Override
     public void handleCollision(CollisionEvent collisionEvent) {
+        /*
+        Tried to do collisions with the converyorbelt, then change the properties of the object hitting it.
+         Many hours later it still did't work, I've been all over the code. The conclusion that I have come to to is that
+         this method is not getting triggered properly, I don't know why and it is very annoying.
+         */
     }
+
+
+
 
 
     public void setDirection(String validate) {
