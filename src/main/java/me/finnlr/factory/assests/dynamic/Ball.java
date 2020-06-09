@@ -15,7 +15,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
- *
+ * @author finn
  * @author jnesis
  */
 public class Ball extends MovingObject implements Collidable {
