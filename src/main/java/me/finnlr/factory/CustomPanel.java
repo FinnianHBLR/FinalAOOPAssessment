@@ -8,6 +8,7 @@ import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
+import me.finnlr.factory.assests.statics.Semi;
 import me.finnlr.factory.gravityHandler.GravityBox;
 import me.finnlr.factory.gravityHandler.GravityResult;
 
@@ -30,8 +31,10 @@ public class CustomPanel extends JPanel
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
     //Array of Lasers
     private List<Laser> lasers = new ArrayList<>();
-
+    //Array list of the Gravity Box
     private List<GravityBox> gravityBoxes = new ArrayList<>();
+    //Array list of the semi image box.
+    private List<Semi> semiList = new ArrayList<>();
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -62,14 +65,22 @@ public class CustomPanel extends JPanel
         for(GravityBox gravityBox: gravityBoxes){
             gravityBox.paintGravityBox(g);
         }
+        //To paint semi Image.
+        for(Semi semi: semiList) {
+            semi.paintSemi(g);
+        }
     }
 
 
-
+    @Override
+    public void remove(Component comp) {
+        super.remove(comp);
+    }
 
     public void addBall(Ball ball) {
        balls.add(ball);
     }
+
 
     public void addSquare(Square square) {
         //Adds a new square to the list of squares.
@@ -86,6 +97,10 @@ public class CustomPanel extends JPanel
 
     public void addGravityBox(GravityBox gravityBox){
         gravityBoxes.add(gravityBox);
+    }
+
+    public void addSemiImage(Semi semi) {
+        semiList.add(semi);
     }
 
 }

@@ -3,6 +3,7 @@ package me.finnlr.factory.assests.dynamic;
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
+import me.finnlr.factory.assests.statics.Semi;
 import me.finnlr.factory.gravityHandler.GravityBox;
 import me.finnlr.factory.gravityHandler.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
@@ -68,6 +69,15 @@ public class Square extends MovingObject implements Collidable {
 
                 this.setX(super.calculateFall("Square").getCalX());
                 this.setY(super.calculateFall("Square").getCalY());
+            }
+
+            if(eventSource instanceof Semi) {
+                //Reset Everything to 0, then stops the thread.
+
+                this.setW(0);
+                this.setH(0);
+                //Stops the thread if it hits the truck.
+                Thread.currentThread().interrupt();
             }
 
             if (eventSource instanceof MovingObject) {

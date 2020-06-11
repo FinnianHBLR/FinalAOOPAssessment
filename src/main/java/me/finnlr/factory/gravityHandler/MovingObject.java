@@ -64,7 +64,7 @@ public class MovingObject {
             //Calculate the next Y value in-front of the object!
 
             //In a parabola a = the slope.
-            int aValue = 310;
+            int aValue = 300;
             //System.out.println("CURRENT CORDS:X" + getX() + " Y:"+ getY() );
 
             //Y = X²/A. This gets the Y value.

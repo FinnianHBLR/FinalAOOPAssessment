@@ -8,6 +8,7 @@ import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
+import me.finnlr.factory.assests.statics.Semi;
 import me.finnlr.factory.gravityHandler.GravityBox;
 
 import java.awt.Color;
@@ -115,6 +116,7 @@ public class FirstWindow {
 
 
                 GravityBox gravityBox = new GravityBox();
+                Semi semi = new Semi();
 
 
                 //Adds objects to panel
@@ -125,6 +127,7 @@ public class FirstWindow {
                 panel.addLaser(laserL);
                 panel.addLaser(laserR);
                 panel.addGravityBox(gravityBox);
+                panel.addSemiImage(semi);
 
                 CollisionManager.height=600;
                 CollisionManager.width=800;
@@ -138,6 +141,7 @@ public class FirstWindow {
                 CollisionManager.addCollidable(laserL);
                 CollisionManager.addCollidable(laserR);
                 CollisionManager.addCollidable(gravityBox);
+                CollisionManager.addCollidable(semi);
 
                 //A window has insets (borders and title bar). To give a size to the panel
                 //where we draw (so we can make sure we know the size) use setPreferedSize.

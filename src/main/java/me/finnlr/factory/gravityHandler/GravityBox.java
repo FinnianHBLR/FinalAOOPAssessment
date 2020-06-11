@@ -8,8 +8,10 @@ import java.awt.*;
 public class GravityBox implements Collidable {
 
     public void paintGravityBox(Graphics graphics){
+        /* Color Gravity Box.
         graphics.setColor(new Color(1, 0, 0, 0.2f));
         graphics.fillRect(200, 190, 400, 400);
+       */
     }
 
 

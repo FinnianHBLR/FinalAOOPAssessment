@@ -7,10 +7,12 @@ package me.finnlr.factory.assests.dynamic;/*
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
+import me.finnlr.factory.assests.statics.Semi;
 import me.finnlr.factory.gravityHandler.GravityBox;
 import me.finnlr.factory.gravityHandler.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
+import me.finnlr.factory.CustomPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -85,6 +87,14 @@ public class Ball extends MovingObject implements Collidable {
                 this.setY(super.calculateFall("Ball").getCalY());
 
             }
+            if(eventSource instanceof Semi) {
+                //Reset Everything to 0 then stops the thread.
+
+                this.setW(0);
+                this.setH(0);
+                //Stops the thread if it hits the truck.
+                Thread.currentThread().interrupt();
+            }
 
             if (eventSource instanceof MovingObject) {
                 //it is a moving object
@@ -121,6 +131,8 @@ public class Ball extends MovingObject implements Collidable {
 
     }
 
+
+
     public int getW() {
         return w;
     }
@@ -144,5 +156,6 @@ public class Ball extends MovingObject implements Collidable {
     public void setColor(Color color) {
         this.color = color;
     }
+
 
 }
