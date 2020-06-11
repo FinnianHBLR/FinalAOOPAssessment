@@ -2,10 +2,6 @@ package me.finnlr.factory.assests.statics;
 //Imports classes through
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
-import me.finnlr.factory.CollisionManager;
-import me.finnlr.factory.MovingObject;
-import me.finnlr.factory.assests.dynamic.Ball;
-import me.finnlr.factory.assests.dynamic.Square;
 
 import java.awt.*;
 

@@ -3,7 +3,8 @@ package me.finnlr.factory.assests.dynamic;
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
-import me.finnlr.factory.MovingObject;
+import me.finnlr.factory.gravityHandler.GravityBox;
+import me.finnlr.factory.gravityHandler.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
 
@@ -61,9 +62,17 @@ public class Square extends MovingObject implements Collidable {
 
             }
 
+            if(eventSource instanceof GravityBox) {
+                //Sends the moving object class Ball to control the square gravity trajectory.
+                //calculateFall("Square");
+
+                this.setX(super.calculateFall("Square").getCalX());
+                this.setY(super.calculateFall("Square").getCalY());
+            }
+
             if (eventSource instanceof MovingObject) {
                 //it is a moving object
-                //me.finnlr.factory.MovingObject movingObject=(me.finnlr.factory.MovingObject)eventSource;
+                //me.finnlr.factory.gravityHandler.MovingObject movingObject=(me.finnlr.factory.gravityHandler.MovingObject)eventSource;
                 //movingObject specifics
                 if (eventSource instanceof Ball) {
 

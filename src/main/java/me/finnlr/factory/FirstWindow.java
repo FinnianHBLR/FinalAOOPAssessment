@@ -8,6 +8,7 @@ import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
+import me.finnlr.factory.gravityHandler.GravityBox;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -113,6 +114,8 @@ public class FirstWindow {
                 laserR.setLaserColor(Color.RED);
 
 
+                GravityBox gravityBox = new GravityBox();
+
 
                 //Adds objects to panel
                 panel.addBall(blueBall);
@@ -121,7 +124,7 @@ public class FirstWindow {
                 panel.addConveyorBelt(conveyorBeltR);
                 panel.addLaser(laserL);
                 panel.addLaser(laserR);
-
+                panel.addGravityBox(gravityBox);
 
                 CollisionManager.height=600;
                 CollisionManager.width=800;
@@ -134,6 +137,7 @@ public class FirstWindow {
 
                 CollisionManager.addCollidable(laserL);
                 CollisionManager.addCollidable(laserR);
+                CollisionManager.addCollidable(gravityBox);
 
                 //A window has insets (borders and title bar). To give a size to the panel
                 //where we draw (so we can make sure we know the size) use setPreferedSize.
@@ -149,13 +153,17 @@ public class FirstWindow {
 
                 MovingObjectAnimator mSquare1 = new MovingObjectAnimator(blueSquare);
                 mSquare1.setMovePerSec(30);
+
+                //MovingObjectAnimator mGravityThread = new MovingObjectAnimator(gravityBox);
                 
                 Thread thread1=new Thread(mBall1);
                 thread1.start();
 
                 Thread thread2=new Thread(mSquare1);
                 thread2.start();
-               
+
+                //Thread gravity = new Thread(gravityBox);
+
                 
                 while (true){
                     

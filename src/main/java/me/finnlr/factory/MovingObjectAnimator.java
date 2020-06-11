@@ -4,6 +4,8 @@ package me.finnlr.factory;/*
  * and open the template in the editor.
  */
 
+import me.finnlr.factory.gravityHandler.MovingObject;
+
 /**
  *
  * @author jnesis

@@ -7,7 +7,8 @@ package me.finnlr.factory.assests.dynamic;/*
 import me.finnlr.factory.Collidable;
 import me.finnlr.factory.CollisionEvent;
 import me.finnlr.factory.CollisionManager;
-import me.finnlr.factory.MovingObject;
+import me.finnlr.factory.gravityHandler.GravityBox;
+import me.finnlr.factory.gravityHandler.MovingObject;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
 
@@ -54,7 +55,10 @@ public class Ball extends MovingObject implements Collidable {
             //AS THIS IS NOT hitting a moving object, it must be outside the instance of movingObject!
             if(eventSource instanceof ConveyorBelt) {
             //THIS NEEDS COMMENTS!
-                
+
+              //setX(super.calculateFall().getX());
+
+
             this.setXDirection(((ConveyorBelt) eventSource).getSpeed());
                 //System.out.println(((ConveyorBelt) eventSource).getSpeed());
             this.setYDirection(0);
@@ -68,9 +72,23 @@ public class Ball extends MovingObject implements Collidable {
 
             }
 
+            if(eventSource instanceof GravityBox) {
+                //setY(super.calculateFall().getCalY() + super.getY());
+                //System.out.println("Setting X to:" + super.calculateFall().getX());
+                //(super.calculateFall().getCalX());
+                //System.out.println("Setting Y to:" + super.calculateFall().getCalY());
+
+                //Sends the moving object class Ball to control the ball gravity trajectory.
+                //calculateFall("Ball");
+
+                this.setX(super.calculateFall("Ball").getCalX());
+                this.setY(super.calculateFall("Ball").getCalY());
+
+            }
+
             if (eventSource instanceof MovingObject) {
                 //it is a moving object
-                //me.finnlr.factory.MovingObject movingObject=(me.finnlr.factory.MovingObject)eventSource;
+                //me.finnlr.factory.gravityHandler.MovingObject movingObject=(me.finnlr.factory.gravityHandler.MovingObject)eventSource;
                 //movingObject specifics
                 if (eventSource instanceof Ball) {
 

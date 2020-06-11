@@ -8,6 +8,8 @@ import me.finnlr.factory.assests.dynamic.Ball;
 import me.finnlr.factory.assests.dynamic.Square;
 import me.finnlr.factory.assests.statics.ConveyorBelt;
 import me.finnlr.factory.assests.statics.Laser;
+import me.finnlr.factory.gravityHandler.GravityBox;
+import me.finnlr.factory.gravityHandler.GravityResult;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class CustomPanel extends JPanel
     private List<ConveyorBelt> conveyorBelts = new ArrayList<>();
     //Array of Lasers
     private List<Laser> lasers = new ArrayList<>();
+
+    private List<GravityBox> gravityBoxes = new ArrayList<>();
     
     @Override
     protected void paintComponent(Graphics g) {
@@ -55,6 +59,9 @@ public class CustomPanel extends JPanel
             //Uses the pain laster base to paint the base.
             laser.paintLaserBase(g);
         }
+        for(GravityBox gravityBox: gravityBoxes){
+            gravityBox.paintGravityBox(g);
+        }
     }
 
 
@@ -75,6 +82,10 @@ public class CustomPanel extends JPanel
 
     public void addLaser(Laser laser){
         lasers.add(laser);
+    }
+
+    public void addGravityBox(GravityBox gravityBox){
+        gravityBoxes.add(gravityBox);
     }
 
 }
