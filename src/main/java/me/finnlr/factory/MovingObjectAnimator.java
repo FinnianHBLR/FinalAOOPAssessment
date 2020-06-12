@@ -35,7 +35,7 @@ public class MovingObjectAnimator implements Runnable{
     @Override
     public void run() {
 
-        while (stopped == false){
+        while (true){
             movingObject.move();
             try {
                 //move every movePerSec.
@@ -46,7 +46,8 @@ public class MovingObjectAnimator implements Runnable{
                 //Other than the loop stopping, the thread is interrupted now.
 
                 if(Thread.currentThread().isInterrupted()){
-                    stopped = true;
+
+                    return;
                 }
             } catch (InterruptedException ex) {
                 System.out.println("Something interrupted me while sleeping...");

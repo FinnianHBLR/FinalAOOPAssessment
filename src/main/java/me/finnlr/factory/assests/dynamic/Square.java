@@ -11,6 +11,11 @@ import me.finnlr.factory.assests.statics.Laser;
 
 import java.awt.*;
 
+/**
+ * This class is the base of the square object, this class uses the paintSquare method called by the customPanel class
+ * Using this a original colour and position can be set in FirstWindow and the object will be created here
+ * @author finn
+ */
 public class Square extends MovingObject implements Collidable {
     //Properties
     //Defaults
@@ -25,6 +30,9 @@ public class Square extends MovingObject implements Collidable {
         graphics.fillRect(getX(), getY(), w, h);
     }
 
+    /**
+     * @return This returns a new bounding box using the x,y,w and h of of the current ball object.
+     */
     @Override
     public Rectangle getBounds() {
         //Creates bounding box around the rectangle.
@@ -38,6 +46,11 @@ public class Square extends MovingObject implements Collidable {
         CollisionManager.handleCollisions(this);
     }
 
+    /**
+     * @param collisionEvent This takes in a collision event which allows this method to get the source of where that impact has occured
+     * Using collision.getSource from the CollisionEvent class it is now possible to compare this event with a specific class
+     * In this method if any specific collision occurs the reaction to that is programmed in this method.
+     */
     @Override
     public void handleCollision(CollisionEvent collisionEvent) {
         if (collisionEvent.getSource().equals(CollisionEvent.WALLSEVENTSOURCE)) {
@@ -77,7 +90,11 @@ public class Square extends MovingObject implements Collidable {
                 this.setW(0);
                 this.setH(0);
                 //Stops the thread if it hits the truck.
-                Thread.currentThread().interrupt();
+                try {
+                    Thread.currentThread().interrupt();
+                } catch (Exception e) {
+                    System.out.println("Thread Error:" + e);
+                }
             }
 
             if (eventSource instanceof MovingObject) {
@@ -96,8 +113,8 @@ public class Square extends MovingObject implements Collidable {
                     //Ball specifics
 
                 } if (eventSource instanceof Square) {
-                    this.color = Color.MAGENTA;
-                    ((Square) eventSource).setColor(Color.MAGENTA);
+                  //  this.color = Color.MAGENTA;
+                    //((Square) eventSource).setColor(Color.MAGENTA);
                 }
             }
         }

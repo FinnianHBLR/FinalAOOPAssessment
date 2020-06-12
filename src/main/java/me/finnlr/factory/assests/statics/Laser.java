@@ -14,6 +14,16 @@ import java.awt.geom.Rectangle2D;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class is the base for the Laser object This object has
+ * multiple properties and consists of two drawn shapes
+ * These shapes are the laser base (You can think of it as a laser generator)
+ * and a laser, you can think of this as the laser beam
+ * Each of these have their own properties
+ *
+ * The laser in this class is rotated using the theta variable, this is used to create a rotated rectangle.
+ *
+ */
 public class Laser implements Collidable {
 
     //Laser Base Properties
@@ -44,6 +54,10 @@ public class Laser implements Collidable {
     }
 
 
+    /**
+     * @param laserG
+     * This method
+     */
     public void paintLaser(Graphics2D laserG){
         /*
         laserG.setColor(getLaserColor());

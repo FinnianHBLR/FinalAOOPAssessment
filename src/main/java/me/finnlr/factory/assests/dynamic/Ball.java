@@ -21,6 +21,10 @@ import java.awt.Rectangle;
 /**
  * @author finn
  * @author jnesis
+ *
+ * This class is the base of the ball object, this class uses the paintBall method called by the customPanel class
+ * Using this a original colour and position can be set in FirstWindow and the object will be created here
+ *
  */
 public class Ball extends MovingObject implements Collidable {
 
@@ -34,6 +38,9 @@ public class Ball extends MovingObject implements Collidable {
         g.fillOval(getX(), getY(), w, h);
     }
 
+    /**
+     * @return This returns a new bounding box using the x,y,w and h of of the current ball object.
+     */
     @Override
     public Rectangle getBounds() {
         return new Rectangle(getX(), getY(), w, h);
@@ -45,6 +52,11 @@ public class Ball extends MovingObject implements Collidable {
         CollisionManager.handleCollisions(this);
     }
 
+    /**
+     * @param collisionEvent This takes in a collision event which allows this method to get the source of where that impact has occured
+     * Using collision.getSource from the CollisionEvent class it is now possible to compare this event with a specific class
+     * In this method if any specific collision occurs the reaction to that is programmed in this method.
+     */
     @Override
     public void handleCollision(CollisionEvent collisionEvent) {
         if (collisionEvent.getSource().equals(CollisionEvent.WALLSEVENTSOURCE)) {
@@ -59,7 +71,6 @@ public class Ball extends MovingObject implements Collidable {
             //THIS NEEDS COMMENTS!
 
               //setX(super.calculateFall().getX());
-
 
             this.setXDirection(((ConveyorBelt) eventSource).getSpeed());
                 //System.out.println(((ConveyorBelt) eventSource).getSpeed());
@@ -93,7 +104,11 @@ public class Ball extends MovingObject implements Collidable {
                 this.setW(0);
                 this.setH(0);
                 //Stops the thread if it hits the truck.
-                Thread.currentThread().interrupt();
+                try {
+                    Thread.currentThread().interrupt();
+                } catch (Exception e) {
+                    System.out.println("Thread Error:" + e);
+                }
             }
 
             if (eventSource instanceof MovingObject) {
@@ -103,9 +118,9 @@ public class Ball extends MovingObject implements Collidable {
                 if (eventSource instanceof Ball) {
 
                     //Sets this balls colors
-                    this.color = Color.MAGENTA;;
+                   // this.color = Color.MAGENTA;;
                     //Sets the other balls colour.
-                    ((Ball) eventSource).color = Color.MAGENTA;;
+                    //((Ball) eventSource).color = Color.MAGENTA;;
 
                     //it is a Ball
                     //Ball ball=(me.finnlr.factory.assests.dynamic.Ball)eventSource;

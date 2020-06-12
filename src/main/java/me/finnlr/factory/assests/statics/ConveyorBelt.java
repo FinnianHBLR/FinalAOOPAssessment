@@ -6,6 +6,10 @@ import me.finnlr.factory.CollisionEvent;
 import java.awt.*;
 
 
+/**
+ * This class is the conveyor belt class This class creates a conveyor belt that moves any object that hits it.
+ *
+ */
 public class ConveyorBelt implements Collidable {
     //Position
     private int x;
@@ -27,6 +31,10 @@ public class ConveyorBelt implements Collidable {
     //Paint object
     public Color color;
 
+    /**
+     * This method paints the conveyor belt. As the object hits the ConveyorBelt, this will be detected on the object side and it will move
+     * @param graphics this is a graphics parameter, this is from the customPanel
+     */
     public void paintConveyorBelt(Graphics graphics) {
         graphics.setColor(color);
         graphics.fillRect(getX(), getY(), w, h);

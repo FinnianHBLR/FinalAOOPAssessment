@@ -6,6 +6,7 @@ package me.finnlr.factory.gravityHandler;/*
 
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  *
@@ -36,7 +37,7 @@ public class MovingObject {
             //Calculate the next Y value in-front of the object!
 
             //In a parabola a = the slope.
-            int aValue = 300;
+            int aValue = 350;
             //System.out.println("CURRENT CORDS:X" + getX() + " Y:"+ getY() );
 
 
